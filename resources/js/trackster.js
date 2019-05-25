@@ -3,8 +3,15 @@
 const API_KEY = '9c828a3d330b676e787d3a6dca7bad1b';
 
 $(document).ready(function() {
+
   $('#search-button').click(function() {
     Trackster.searchTracksByTitle($('#input').val());
+  });
+
+  $('#input').keyup(function(event) {
+    if (event.which == 13) { // search for songs when Enter is pressed
+      Trackster.searchTracksByTitle($('#input').val());
+    }
   });
 });
 
@@ -39,7 +46,7 @@ Trackster.renderTracks = function(tracks) {
         '<div class="col-xs-2">' +
           '<img src=' + imageURL + '>' +
         '</div>' +
-        '<div class="col-xs-1 listeners">' + Trackster.padListeners(listeners) + '</div>' +
+        '<div class="col-xs-1 listeners">' + Trackster.formatListeners(listeners) + '</div>' +
       '</div>';
 
     $('#results').append(oneRow);
@@ -67,7 +74,7 @@ Trackster.searchTracksByTitle = function(title) {
   Pads number of listeners so that it is 8 digits long, making it easier
   to line up all the numbers in the Listeners column of the results.
 */
-Trackster.padListeners = function(numString) {
+Trackster.formatListeners = function(numString) {
 
   const requiredLength = 8; /* allows for up to 99999999 listeners */
   var paddingAmount = requiredLength - numString.length;
