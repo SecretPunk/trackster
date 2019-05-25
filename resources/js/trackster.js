@@ -19,6 +19,8 @@ Trackster.renderTracks = function(tracks) {
 
   var name, artist, imageURL, listeners;
 
+  $('#results').empty(); // empty out the results before displaying the new ones
+
   for (var i = 0; i < tracks.length; i++) {
 
     trackURL = tracks[i].url;
@@ -51,9 +53,10 @@ Trackster.renderTracks = function(tracks) {
 Trackster.searchTracksByTitle = function(title) {
 
   $.ajax( {
-    url: 'http://ws.audioscrobbler.com/2.0/?method=track.search&track=' + title + '&api_key=' + API_KEY + '&format=json',
+    url: 'https://ws.audioscrobbler.com/2.0/?method=track.search&track=' + title + '&api_key=' + API_KEY + '&format=json',
     datatype: 'jsonp',
     success: function(data) {
+      console.log(data);
       console.log(data.results.trackmatches.track);
       Trackster.renderTracks(data.results.trackmatches.track);
     }
@@ -62,7 +65,8 @@ Trackster.searchTracksByTitle = function(title) {
 
 /*
   Pads number of listeners so that it is 8 digits long, making it easier
-  to line up all the numbers in the Listeners column of the results. */
+  to line up all the numbers in the Listeners column of the results.
+*/
 Trackster.padListeners = function(numString) {
 
   const requiredLength = 8; /* allows for up to 99999999 listeners */
