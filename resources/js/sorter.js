@@ -26,11 +26,11 @@ Sorter.insertionSort = function(jumbledArray) {
   return sortedArray;
 };
 
-Sorter.sortByField = function(field) {
+Sorter.sortDown = function(field) {
 
-  jumbledResults = $('#results');
+  var jumbledResults = $('#results');
 
-  sortedResults = [];
+  var sortedResults = [];
 
   jumbledResults.children().each(function() {
 
@@ -62,5 +62,40 @@ Sorter.sortByField = function(field) {
 
   for (j = 0; j < sortedResults.length; j++) {
     $('#results').append(sortedResults[j]);
+  }
+
+  $('#results').data('sortedByClass', field);
+};
+
+Sorter.reverse = function() {
+
+  var originalResults = $('#results');
+
+  var reversedResults = [];
+
+  originalResults.children().each(function() {
+    reversedResults.unshift($(this));
+  });
+
+  $('#results').empty();
+
+  for (i = 0; i < reversedResults.length; i++) {
+    $('#results').append(reversedResults[i]);
+  }
+};
+
+Sorter.getSortStatus = function(field) {
+
+  /* if sorted by that field, reverse all the results.
+     if not sorted at all, sortdown.
+     if sorted by another field, sortdown. */
+
+  var sortedByClass = $('#results').data('sortedByClass');
+
+  if (sortedByClass == field) {
+    Sorter.reverse();
+  }
+  else {
+    Sorter.sortDown(field);
   }
 };

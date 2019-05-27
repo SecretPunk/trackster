@@ -4,6 +4,8 @@ const API_KEY = '9c828a3d330b676e787d3a6dca7bad1b';
 
 $(document).ready(function() {
 
+  $('#results').data('sortedByClass', 'none');
+
   $('#search-button').click(function() {
     Trackster.searchTracksByTitle($('#input').val());
   });
@@ -14,16 +16,17 @@ $(document).ready(function() {
     }
   });
 
-  $('.sortable.name').click(function() {
-    Sorter.sortByField('.name');
-  });
+  $('.sortable').click(function() {
 
-  $('.sortable.artist').click(function() {
-    Sorter.sortByField('.artist');
-  });
-
-  $('.sortable.listeners').click(function() {
-    Sorter.sortByField('.listeners');
+    if ($(this).hasClass('name')) {
+      Sorter.getSortStatus('.name');
+    }
+    else if ($(this).hasClass('artist')) {
+      Sorter.getSortStatus('.artist');
+    }
+    else {
+      Sorter.getSortStatus('.listeners');
+    }
   });
 });
 
