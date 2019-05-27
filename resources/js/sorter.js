@@ -25,3 +25,42 @@ Sorter.insertionSort = function(jumbledArray) {
   }
   return sortedArray;
 };
+
+Sorter.sortByField = function(field) {
+
+  jumbledResults = $('#results');
+
+  sortedResults = [];
+
+  jumbledResults.children().each(function() {
+
+    if (sortedResults.length == 0) {
+      sortedResults.push($(this));
+    }
+
+    else {
+      for (var i = 0; i < sortedResults.length; i++) {
+
+        var jumbledOne = $(field, this).text().toLowerCase().replace(' ', '');
+        var sortedOne = $(field, sortedResults[i]).text().toLowerCase().replace(' ', '');
+
+        if (jumbledOne >= sortedOne) {
+          if (i == sortedResults.length - 1) {
+            sortedResults.push($(this));
+            break;
+          }
+        }
+        else {
+          sortedResults.splice(i, 0, $(this));
+          break;
+        }
+      }
+    }
+  });
+
+  $('#results').empty();
+
+  for (j = 0; j < sortedResults.length; j++) {
+    $('#results').append(sortedResults[j]);
+  }
+};

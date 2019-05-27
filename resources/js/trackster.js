@@ -13,6 +13,18 @@ $(document).ready(function() {
       Trackster.searchTracksByTitle($('#input').val());
     }
   });
+
+  $('.sortable.name').click(function() {
+    Sorter.sortByField('.name');
+  });
+
+  $('.sortable.artist').click(function() {
+    Sorter.sortByField('.artist');
+  });
+
+  $('.sortable.listeners').click(function() {
+    Sorter.sortByField('.listeners');
+  });
 });
 
 
@@ -41,8 +53,8 @@ Trackster.renderTracks = function(tracks) {
         '<div class="col-xs-1 play-button">' +
           '<a href=' + trackURL + '><i class="fa fa-play-circle-o fa-2x"></i></a>' +
         '</div>' +
-        '<div class="col-xs-4">' + name + '</div>' +
-        '<div class="col-xs-4">' + artist + '</div>' +
+        '<div class="col-xs-4 name">' + name + '</div>' +
+        '<div class="col-xs-4 artist">' + artist + '</div>' +
         '<div class="col-xs-2">' +
           '<img src=' + imageURL + '>' +
         '</div>' +

@@ -72,6 +72,11 @@ h1 {
   font-weight: 500;
 }
 
+.headings .sortable:hover {
+  cursor: pointer;
+  color: rgb(200, 200, 200);
+}
+
 /* RESULTS */
 
 .one-result {
@@ -100,6 +105,6 @@ a:hover {
   color: rgb(255, 102, 204);
 }
 
-.listeners {
+#results .listeners {
   font-family: monospace;
 }
