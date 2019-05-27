@@ -64,7 +64,6 @@ Trackster.searchTracksByTitle = function(title) {
     datatype: 'jsonp',
     success: function(data) {
       console.log(data);
-      console.log(data.results.trackmatches.track);
       Trackster.renderTracks(data.results.trackmatches.track);
     }
   });
