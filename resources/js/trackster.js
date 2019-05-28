@@ -56,12 +56,12 @@ Trackster.renderTracks = function(tracks) {
         '<div class="col-xs-1 play-button">' +
           '<a href=' + trackURL + '><i class="fa fa-play-circle-o fa-2x"></i></a>' +
         '</div>' +
-        '<div class="col-xs-4 name">' + name + '</div>' +
-        '<div class="col-xs-4 artist">' + artist + '</div>' +
-        '<div class="col-xs-2">' +
+        '<div class="col-xs-5 col-md-4 name">' + name + '</div>' +
+        '<div class="col-xs-4 col-md-4 artist">' + artist + '</div>' +
+        '<div class="col-md-2 artwork">' +
           '<img src=' + imageURL + '>' +
         '</div>' +
-        '<div class="col-xs-1 listeners">' + Trackster.formatListeners(listeners) + '</div>' +
+        '<div class="col-xs-2 col-md-1 listeners">' + Trackster.formatListeners(listeners) + '</div>' +
       '</div>';
 
     $('#results').append(oneRow);
