@@ -4,18 +4,22 @@ const API_KEY = '9c828a3d330b676e787d3a6dca7bad1b';
 
 $(document).ready(function() {
 
+  // initially, the results are not sorted by any class
   $('#results').data('sortedByClass', 'none');
 
+  // wait for the click event before searching
   $('#search-button').click(function() {
     Trackster.searchTracksByTitle($('#input').val());
   });
 
+  // wait for the enter key before searching
   $('#input').keyup(function(event) {
     if (event.which == 13) { // search for songs when Enter is pressed
       Trackster.searchTracksByTitle($('#input').val());
     }
   });
 
+  // if a sortable column heading is clicked, run the sorting method
   $('.sortable').click(function() {
 
     if ($(this).hasClass('name')) {
@@ -56,12 +60,12 @@ Trackster.renderTracks = function(tracks) {
         '<div class="col-xs-1 play-button">' +
           '<a href=' + trackURL + '><i class="fa fa-play-circle-o fa-2x"></i></a>' +
         '</div>' +
-        '<div class="col-xs-5 col-md-4 name">' + name + '</div>' +
-        '<div class="col-xs-4 col-md-4 artist">' + artist + '</div>' +
+        '<div class="col-xs-4 name">' + name + '</div>' +
+        '<div class="col-xs-4 artist">' + artist + '</div>' +
         '<div class="col-md-2 artwork">' +
           '<img src=' + imageURL + '>' +
         '</div>' +
-        '<div class="col-xs-2 col-md-1 listeners">' + Trackster.formatListeners(listeners) + '</div>' +
+        '<div class="col-xs-3 col-md-1 listeners">' + Trackster.formatListeners(listeners) + '</div>' +
       '</div>';
 
     $('#results').append(oneRow);

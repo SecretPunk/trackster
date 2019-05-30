@@ -2,6 +2,8 @@
   Custom styles for Trackster App
 */
 
+/* COMMON */
+
 body {
   font-family: 'Work Sans', sans-serif;
   font-size: 16px;
@@ -9,6 +11,11 @@ body {
 
 div[class^='col-'] {
   padding: 0.5rem;
+}
+
+.container-fluid, .row {
+  padding: 0;
+  margin: 0;
 }
 
 /* HEADER */

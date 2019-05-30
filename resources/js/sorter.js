@@ -1,5 +1,10 @@
 var Sorter = {};
 
+/*
+  this is an insertion sort method for a simple array. I created this so I
+  could perfect the sorting algorithm before complicating it with jquery objects
+  and the like.
+*/
 Sorter.insertionSort = function(jumbledArray) {
 
   var sortedArray = [];
@@ -26,6 +31,10 @@ Sorter.insertionSort = function(jumbledArray) {
   return sortedArray;
 };
 
+/*
+  sort the rows of results, from A (top) to Z (bottom), based on one field,
+  which may be '.name', '.artist' or '.listeners'.
+*/
 Sorter.sortDown = function(field) {
 
   var jumbledResults = $('#results');
@@ -41,6 +50,8 @@ Sorter.sortDown = function(field) {
     else {
       for (var i = 0; i < sortedResults.length; i++) {
 
+        // strip the spaces and convert all letters to lowercase, so they can
+        // be compared more accurately for sorting.
         var jumbledOne = $(field, this).text().toLowerCase().replace(' ', '');
         var sortedOne = $(field, sortedResults[i]).text().toLowerCase().replace(' ', '');
 
@@ -58,6 +69,7 @@ Sorter.sortDown = function(field) {
     }
   });
 
+  // remove the unsorted rows, and then replace with the newly sorted ones.
   $('#results').empty();
 
   for (j = 0; j < sortedResults.length; j++) {
@@ -67,6 +79,9 @@ Sorter.sortDown = function(field) {
   $('#results').data('sortedByClass', field);
 };
 
+/*
+  Reverse the order of the results.
+*/
 Sorter.reverse = function() {
 
   var originalResults = $('#results');
@@ -84,6 +99,13 @@ Sorter.reverse = function() {
   }
 };
 
+/*
+  This is the first method that is called when a sortable column heading is
+  clicked. It checks the results' "sortedByClass" data attribute to figure out
+  if the rows have already been sorted by the specified field. if so, then it
+  reverses the results. if not, then it sorts the results by the specified
+  field, from A to Z.
+*/
 Sorter.getSortStatus = function(field) {
 
   /* if sorted by that field, reverse all the results.
